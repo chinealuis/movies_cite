@@ -1,11 +1,13 @@
 import styles from "./Search.module.css";
 import { FaSearch } from "react-icons/fa";
-import { useNavigate } from "react-router";
-import { useQuery } from "../hooks/useQuery";
+//import { useNavigate } from "react-router";
+//import { useQuery } from "../hooks/useQuery";
+import {useSearchParams} from "react-router-dom"
 
 export function Search() {
-  const navigate = useNavigate();                           // hook de react-router
-  const query = useQuery();
+  //const navigate = useNavigate();                           // hook de react-router
+  //const query = useQuery();
+  const [query, setQuery] = useSearchParams();             //mejor q el navigare, se setea lo q se pasa por parametros porl la url
   const search = query.get("search");                      //se guarda el valor del paramatro de busqueda de la url
 
 /*    const handleSubmit = (e) => {
@@ -24,7 +26,8 @@ export function Search() {
           aria-label="Search Movie"
           onChange={(e) => {
             const value = e.target.value;
-            navigate("/?search=" + value);                  // va a buscar cada vez q cambie lo q se esta introduciendo por el input
+            //navigate("/?search=" + value);                  // va a buscar cada vez q cambie lo q se esta introduciendo por el input
+            setQuery({search:value})                          //hace lo mismo q navigate pero esta mejor
           }}
         />
        
